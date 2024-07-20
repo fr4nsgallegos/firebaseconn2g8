@@ -52,19 +52,34 @@ class LoginPage extends StatelessWidget {
   final FirebaseAuth _auth = FirebaseAuth.instance;
 
   Future<void> login(BuildContext context) async {
-    _auth
-        .signInWithEmailAndPassword(
-            email: correo.text, password: contrasena.text)
-        .then((value) {
-      print(value);
-      print("inicio sesión");
-      Navigator.push(
-        context,
-        MaterialPageRoute(
-          builder: (context) => HomePage(),
+    try {
+      _auth
+          .signInWithEmailAndPassword(
+              email: correo.text, password: contrasena.text)
+          .then((value) {
+        print(value);
+        print("inicio sesión");
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => HomePage(),
+          ),
+        );
+      });
+    } catch (error) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          backgroundColor: Colors.red,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(26),
+          ),
+          behavior: SnackBarBehavior.floating,
+          content: Text(
+            error.toString(),
+          ),
         ),
       );
-    });
+    }
   }
 
   @override
