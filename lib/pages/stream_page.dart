@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 
 class StreamPage extends StatefulWidget {
@@ -13,20 +15,43 @@ class _StreamPageState extends State<StreamPage> {
     return "Esta es la data";
   }
 
+  StreamController<String> streamController = StreamController();
   @override
   void initState() {
-    print("inicio de stream");
-    Stream<String> myStream = Stream.fromFuture(getData());
-    print("Stream creado");
-    myStream.listen((data) {
-      print("la data es: $data");
-    }, onDone: () {
-      print("Task Done");
-    });
-    print("FINISH");
+    print("Creando un stream controller");
+    streamController.stream.listen(
+      (data) {
+        print("Data recibida: $data");
+      },
+      onDone: () => print("Doneeeee "),
+    );
     // TODO: implement initState
+
+    streamController.add("Este es el evento de String");
+    print("Finishhh");
     super.initState();
   }
+
+  @override
+  void dispose() {
+    streamController.close();
+    // TODO: implement dispose
+    super.dispose();
+  }
+  // @override
+  // void initState() {
+  //   print("inicio de stream");
+  //   Stream<String> myStream = Stream.fromFuture(getData());
+  //   print("Stream creado");
+  //   myStream.listen((data) {
+  //     print("la data es: $data");
+  //   }, onDone: () {
+  //     print("Task Done");
+  //   });
+  //   print("FINISH");
+  //   // TODO: implement initState
+  //   super.initState();
+  // }
 
   @override
   Widget build(BuildContext context) {
