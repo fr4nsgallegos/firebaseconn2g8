@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -47,6 +48,15 @@ class CreateAccountPage extends StatelessWidget {
     );
   }
 
+  final FirebaseAuth _auth = FirebaseAuth.instance;
+  Future<void> createAccount() async {
+    UserCredential userCredential = await _auth.createUserWithEmailAndPassword(
+      email: correo.text,
+      password: contrasena.text,
+    );
+    print(userCredential.user);
+  }
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -88,6 +98,11 @@ class CreateAccountPage extends StatelessWidget {
               ),
               fieldCuenta("Correo", correo),
               fieldCuenta("Contraseña", contrasena),
+              ElevatedButton(
+                  onPressed: () {
+                    createAccount();
+                  },
+                  child: Text("Crear cuenta "))
             ],
           ),
         ),
