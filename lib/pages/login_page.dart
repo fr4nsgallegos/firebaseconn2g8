@@ -108,12 +108,6 @@ class LoginPage extends StatelessWidget {
                 SizedBox(
                   height: 16,
                 ),
-                GestureDetector(
-                  child: Text(
-                    "o inicia sesión",
-                    style: TextStyle(color: Colors.white),
-                  ),
-                ),
                 SizedBox(
                   height: 16,
                 ),

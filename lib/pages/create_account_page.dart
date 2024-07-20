@@ -50,12 +50,43 @@ class CreateAccountPage extends StatelessWidget {
   }
 
   final FirebaseAuth _auth = FirebaseAuth.instance;
-  Future<void> createAccount() async {
-    UserCredential userCredential = await _auth.createUserWithEmailAndPassword(
-      email: correo.text,
-      password: contrasena.text,
-    );
-    print(userCredential.user);
+  String mapErrorAuth(String errorMessage) {
+    if (errorMessage.contains("email-already-in-use")) {
+      return "La dirección de correo ya esta en uso";
+    } else if (errorMessage.contains("invalid-email")) {
+      return "El correo es inválido";
+    } else if (errorMessage.contains("weak-password")) {
+      return "La contraseña no cumple con los estándares";
+    } else {
+      return "ocurrio un prblema al crear la cuenta";
+    }
+  }
+
+  Future<void> createAccount(BuildContext context) async {
+    try {
+      UserCredential userCredential =
+          await _auth.createUserWithEmailAndPassword(
+        email: correo.text,
+        password: contrasena.text,
+      );
+      print(userCredential.user);
+      print("----------------------------");
+      print(userCredential);
+    } catch (error) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          backgroundColor: Colors.red,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(26),
+          ),
+          behavior: SnackBarBehavior.floating,
+          content: Text(
+            mapErrorAuth(error.toString()),
+            // error.toString(),
+          ),
+        ),
+      );
+    }
   }
 
   @override
@@ -78,52 +109,54 @@ class CreateAccountPage extends StatelessWidget {
               ],
             ),
           ),
-          child: Column(
-            children: [
-              Text(
-                "App de votacioness",
-                style: TextStyle(color: Colors.white, fontSize: 30),
-              ),
-              SizedBox(
-                height: 26,
-              ),
-              FlutterLogo(
-                size: 200,
-              ),
-              SizedBox(
-                height: 16,
-              ),
-              Text(
-                "Crea una cuenta ",
-                style: TextStyle(color: Colors.white, fontSize: 25),
-              ),
-              fieldCuenta("Correo", correo),
-              fieldCuenta("Contraseña", contrasena),
-              SizedBox(
-                height: 16,
-              ),
-              GestureDetector(
-                onTap: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => LoginPage(),
-                      ));
-                },
-                child: Text(
-                  "o inicia sesión",
-                  style: TextStyle(color: Colors.white),
+          child: SingleChildScrollView(
+            child: Column(
+              children: [
+                Text(
+                  "App de votacioness",
+                  style: TextStyle(color: Colors.white, fontSize: 30),
                 ),
-              ),
-              SizedBox(
-                height: 16,
-              ),
-              ElevatedButton(
-                  onPressed: () {
-                    createAccount();
+                SizedBox(
+                  height: 26,
+                ),
+                FlutterLogo(
+                  size: 200,
+                ),
+                SizedBox(
+                  height: 16,
+                ),
+                Text(
+                  "Crea una cuenta ",
+                  style: TextStyle(color: Colors.white, fontSize: 25),
+                ),
+                fieldCuenta("Correo", correo),
+                fieldCuenta("Contraseña", contrasena),
+                SizedBox(
+                  height: 16,
+                ),
+                GestureDetector(
+                  onTap: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => LoginPage(),
+                        ));
                   },
-                  child: Text("Crear cuenta "))
-            ],
+                  child: Text(
+                    "o inicia sesión",
+                    style: TextStyle(color: Colors.white),
+                  ),
+                ),
+                SizedBox(
+                  height: 16,
+                ),
+                ElevatedButton(
+                    onPressed: () {
+                      createAccount(context);
+                    },
+                    child: Text("Crear cuenta "))
+              ],
+            ),
           ),
         ),
       ),
