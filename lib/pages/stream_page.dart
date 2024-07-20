@@ -15,22 +15,45 @@ class _StreamPageState extends State<StreamPage> {
     return "Esta es la data";
   }
 
-  StreamController<String> streamController = StreamController();
+  StreamController<String> streamController = StreamController.broadcast();
+
   @override
   void initState() {
-    print("Creando un stream controller");
-    streamController.stream.listen(
-      (data) {
-        print("Data recibida: $data");
-      },
-      onDone: () => print("Doneeeee "),
-    );
-    // TODO: implement initState
+    print("creando stream controller");
 
-    streamController.add("Este es el evento de String");
-    print("Finishhh");
+    //primera subscripcion
+    streamController.stream.listen((data) {
+      print("data recibida $data");
+    }, onDone: () {
+      print("Doneeee");
+    });
+
+    //segunda suscripcion
+    streamController.stream.listen((data) {
+      print("data recibidda 2: $data");
+    });
+
+    streamController.add("testeo de data");
+    print("finish");
+    // TODO: implement initState
     super.initState();
   }
+
+  // @override
+  // void initState() {
+  //   print("Creando un stream controller");
+  //   streamController.stream.listen(
+  //     (data) {
+  //       print("Data recibida: $data");
+  //     },
+  //     onDone: () => print("Doneeeee "),
+  //   );
+  //   // TODO: implement initState
+
+  //   streamController.add("Este es el evento de String");
+  //   print("Finishhh");
+  //   super.initState();
+  // }
 
   @override
   void dispose() {
