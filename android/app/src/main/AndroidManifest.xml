@@ -1,8 +1,11 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
+   
     <application
         android:label="firebaseconn2g8"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
+        <meta-data android:name="com.google.android.geo.API_KEY"
+               android:value="AIzaSyCEgzqZrHK6b8QZQ_L_VO_wuf_Nq0X3KSs"/>
         <activity
             android:name=".MainActivity"
             android:exported="true"
