@@ -1,10 +1,10 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebaseconn2g8/pages/login_page.dart';
+import 'package:firebaseconn2g8/pages/home_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
-class CreateAccountPage extends StatelessWidget {
+class LoginPage extends StatelessWidget {
   TextEditingController correo = TextEditingController();
   TextEditingController contrasena = TextEditingController();
   Widget fieldCuenta(
@@ -50,12 +50,21 @@ class CreateAccountPage extends StatelessWidget {
   }
 
   final FirebaseAuth _auth = FirebaseAuth.instance;
-  Future<void> createAccount() async {
-    UserCredential userCredential = await _auth.createUserWithEmailAndPassword(
-      email: correo.text,
-      password: contrasena.text,
-    );
-    print(userCredential.user);
+
+  Future<void> login(BuildContext context) async {
+    _auth
+        .signInWithEmailAndPassword(
+            email: correo.text, password: contrasena.text)
+        .then((value) {
+      print(value);
+      print("inicio sesión");
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => HomePage(),
+        ),
+      );
+    });
   }
 
   @override
@@ -78,52 +87,43 @@ class CreateAccountPage extends StatelessWidget {
               ],
             ),
           ),
-          child: Column(
-            children: [
-              Text(
-                "App de votacioness",
-                style: TextStyle(color: Colors.white, fontSize: 30),
-              ),
-              SizedBox(
-                height: 26,
-              ),
-              FlutterLogo(
-                size: 200,
-              ),
-              SizedBox(
-                height: 16,
-              ),
-              Text(
-                "Crea una cuenta ",
-                style: TextStyle(color: Colors.white, fontSize: 25),
-              ),
-              fieldCuenta("Correo", correo),
-              fieldCuenta("Contraseña", contrasena),
-              SizedBox(
-                height: 16,
-              ),
-              GestureDetector(
-                onTap: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => LoginPage(),
-                      ));
-                },
-                child: Text(
-                  "o inicia sesión",
-                  style: TextStyle(color: Colors.white),
+          child: SingleChildScrollView(
+            child: Column(
+              children: [
+                SizedBox(
+                  height: 26,
                 ),
-              ),
-              SizedBox(
-                height: 16,
-              ),
-              ElevatedButton(
-                  onPressed: () {
-                    createAccount();
-                  },
-                  child: Text("Crear cuenta "))
-            ],
+                FlutterLogo(
+                  size: 200,
+                ),
+                SizedBox(
+                  height: 16,
+                ),
+                Text(
+                  "Inicia sesión ",
+                  style: TextStyle(color: Colors.white, fontSize: 25),
+                ),
+                fieldCuenta("Correo", correo),
+                fieldCuenta("Contraseña", contrasena),
+                SizedBox(
+                  height: 16,
+                ),
+                GestureDetector(
+                  child: Text(
+                    "o inicia sesión",
+                    style: TextStyle(color: Colors.white),
+                  ),
+                ),
+                SizedBox(
+                  height: 16,
+                ),
+                ElevatedButton(
+                    onPressed: () {
+                      login(context);
+                    },
+                    child: Text("Iiniciar"))
+              ],
+            ),
           ),
         ),
       ),
