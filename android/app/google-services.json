@@ -58,6 +58,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "972910265079-v8m2bf6qfcr2n3t29ubeorqvbm12r81o.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "pe.corigog8.firebaseconn2g8",
+            "certificate_hash": "45135d3bf1093838c55e611223392f3da7f50306"
+          }
+        },
+        {
           "client_id": "972910265079-li89p1v234k1l42ij1ubop2aca5b9l2j.apps.googleusercontent.com",
           "client_type": 3
         }
