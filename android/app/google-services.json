@@ -12,7 +12,20 @@
           "package_name": "pe.codigo.firebaseg8"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "972910265079-iskbb8d4sugk0cr42uvh5r6t1sigmg7c.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "pe.codigo.firebaseg8",
+            "certificate_hash": "45135d3bf1093838c55e611223392f3da7f50306"
+          }
+        },
+        {
+          "client_id": "972910265079-li89p1v234k1l42ij1ubop2aca5b9l2j.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyAJW-KRgnAEapae3MFXs7no08uecvJ1Lk8"
@@ -20,7 +33,19 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "972910265079-li89p1v234k1l42ij1ubop2aca5b9l2j.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "972910265079-99cltesi5vkigmjp7fg1eripjgmmkqil.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "pe.corigog8.firebaseconn2g8"
+              }
+            }
+          ]
         }
       }
     },
@@ -31,7 +56,12 @@
           "package_name": "pe.corigog8.firebaseconn2g8"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "972910265079-li89p1v234k1l42ij1ubop2aca5b9l2j.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyAJW-KRgnAEapae3MFXs7no08uecvJ1Lk8"
@@ -39,7 +69,19 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "972910265079-li89p1v234k1l42ij1ubop2aca5b9l2j.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "972910265079-99cltesi5vkigmjp7fg1eripjgmmkqil.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "pe.corigog8.firebaseconn2g8"
+              }
+            }
+          ]
         }
       }
     }
