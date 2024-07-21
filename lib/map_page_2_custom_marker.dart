@@ -57,6 +57,13 @@ class _MapPageMarkerCustomState extends State<MapPageMarkerCustom> {
   }
 
   @override
+  void dispose() {
+    _customInfoWindowController.dispose();
+    // TODO: implement dispose
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
