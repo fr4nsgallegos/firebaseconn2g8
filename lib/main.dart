@@ -15,7 +15,7 @@ void main() async {
     MaterialApp(
       // home: HomePage(),
       // home: CreateAccountPage(),
-      home: MapPage(),
+      home: MapPageMarkerCustom(),
       debugShowCheckedModeBanner: false,
     ),
   );
