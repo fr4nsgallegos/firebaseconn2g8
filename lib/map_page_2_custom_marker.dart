@@ -65,6 +65,9 @@ class _MapPageMarkerCustomState extends State<MapPageMarkerCustom> {
             onCameraMove: (position) {
               _customInfoWindowController.onCameraMove!();
             },
+            onMapCreated: (GoogleMapController controller) {
+              _customInfoWindowController.googleMapController = controller;
+            },
           ),
           CustomInfoWindow(
             controller: _customInfoWindowController,
