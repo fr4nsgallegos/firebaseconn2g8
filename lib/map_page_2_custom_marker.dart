@@ -28,7 +28,18 @@ class _MapPageMarkerCustomState extends State<MapPageMarkerCustom> {
                 Container(
                   width: 200,
                   height: 300,
-                  color: Colors.black,
+                  // color: Colors.black,
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(25),
+                  ),
+                  child: Column(
+                    children: [
+                      Text("Esta es la dirección"),
+                      Spacer(),
+                      Text("Este es el punto ")
+                    ],
+                  ),
                 ),
                 pos1);
           }),
